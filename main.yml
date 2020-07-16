@@ -1,0 +1,2 @@
+- name: Set up the RE Discord Projects Server
+  import_playbook: "hosts/digitalocean-setup.yml"
