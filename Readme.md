@@ -15,6 +15,7 @@ This repo contains the ansible playbooks to spin up the infrastructure hosting t
 ## Making it work
 Before you begin, you will need the following:
 - A [Digital Ocean](https://www.digitalocean.com) Account.
+- A [CloudFlare](https://cloudflare.com) account set up for DNS
 - A linux box with [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html) installed ([WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) also works if you are running Windows 10)
 
 Then to fire everything up,,,
