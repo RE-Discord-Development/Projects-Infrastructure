@@ -3,6 +3,7 @@
 
   vars_files:
    - "vars/secrets.yml"
+   - "vars/values.yml"
 
   roles:
     - digitalocean
