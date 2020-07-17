@@ -25,6 +25,7 @@
     resource_id: "{{ re_droplet.data.droplet.id }}" 
     state: present
   loop: "{{ server_tags }}"
+  when: re_droplet is changed
 
 - name: Create DNS A record to point to the box
   cloudflare_dns:
