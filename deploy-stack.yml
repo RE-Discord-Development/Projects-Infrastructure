@@ -1,0 +1,12 @@
+- name: Deploy the application stack to a server
+  hosts: localhost
+
+  vars_files:
+   - "vars/secrets.yml"
+
+  roles:
+    - docker
+    - traefik
+    - prometheus
+    - grafana
+    - communitybot

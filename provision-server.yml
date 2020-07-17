@@ -1,0 +1,8 @@
+- name: Set up RE Discord Community Host Environment
+  hosts: localhost
+
+  vars_files:
+   - "vars/secrets.yml"
+
+  roles:
+    - digitalocean
