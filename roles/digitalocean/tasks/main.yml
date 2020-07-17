@@ -18,19 +18,13 @@
     oauth_token: "{{ DO_API_TOKEN }}"
   register: re_droplet
     
-- name: Tag resources as "re-discord"
+- name: Tag resources
   digital_ocean_tag:
-    name: "re-discord" 
+    name: "{{ item }}" 
     oauth_token: "{{ DO_API_TOKEN }}"
     resource_id: "{{ re_droplet.data.droplet.id }}" 
     state: present
-
-- name: Tag resources as "docker"
-  digital_ocean_tag:
-    name: "docker" 
-    oauth_token: "{{ DO_API_TOKEN }}"
-    resource_id: "{{ re_droplet.data.droplet.id }}" 
-    state: present 
+  loop: "{{ server_tags }}"
 
 - name: Create DNS A record to point to the box
   cloudflare_dns:

@@ -1,4 +1,5 @@
 dns_zone: "buttes.xyz"
 server_hostname: "re-discord-server"
+server_tags: ["re-discord", "docker"]
 ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6/kE22FMkGXOFQu5MY6IpTfDiL55o7RBTkBObprPXpXI5vepHugqFPExv0x/jU+NEITB4lD7/GF5eobjPcv0jeZZgPsgWLln3QqRaFmLc8p3kQGgh5GTEEsmH+exuSDYZtOi1fJBtYRQ9roTfF/AunwR9O4HaCuwO4DwSnenXQl2lbhl7O7wp/RU+aCDOo9aT86mHci8/UmNe2AGxEIVC38VpfhhaxNtQ2cgBpvtWDyNUbVQDVw+Az8T7UTqMRQVKOjwL9ppilh24gkeT/L+7SSemhC0ZEOpa4HI6MTto8mL0/Cm6TPgO6F2aUl0jTdpZJG+F/qWLvC8cuhnPSl8/ catbuttes@outlook.com"
 ssh_key_fingerprint: "00:4f:c2:c8:ac:93:89:2c:63:31:17:53:6c:d7:0c:de"
