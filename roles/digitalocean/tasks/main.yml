@@ -2,18 +2,18 @@
   digital_ocean_sshkey:
     name: "CatButtes SSH Public Key"
     oauth_token: "{{ DO_API_TOKEN }}"
-    ssh_pub_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6/kE22FMkGXOFQu5MY6IpTfDiL55o7RBTkBObprPXpXI5vepHugqFPExv0x/jU+NEITB4lD7/GF5eobjPcv0jeZZgPsgWLln3QqRaFmLc8p3kQGgh5GTEEsmH+exuSDYZtOi1fJBtYRQ9roTfF/AunwR9O4HaCuwO4DwSnenXQl2lbhl7O7wp/RU+aCDOo9aT86mHci8/UmNe2AGxEIVC38VpfhhaxNtQ2cgBpvtWDyNUbVQDVw+Az8T7UTqMRQVKOjwL9ppilh24gkeT/L+7SSemhC0ZEOpa4HI6MTto8mL0/Cm6TPgO6F2aUl0jTdpZJG+F/qWLvC8cuhnPSl8/ catbuttes@outlook.com"
+    ssh_pub_key: "{{ ssh_public_key }}"
     state: present
 
 - name: Spin up droplet
   digital_ocean_droplet:
-    name: "re-hosting-box"
+    name: "{{ server_hostname }}"
     unique_name: yes
     ipv6: yes
     region: "ams3"
     image: "ubuntu-20-04-x64"
     size: "s-1vcpu-1gb"
-    ssh_keys: "00:4f:c2:c8:ac:93:89:2c:63:31:17:53:6c:d7:0c:de"
+    ssh_keys: "{{ ssh_key_fingerprint }}"
     state: present
     oauth_token: "{{ DO_API_TOKEN }}"
   register: re_droplet
@@ -35,7 +35,7 @@
 - name: Create DNS A record to point to the box
   cloudflare_dns:
     zone: buttes.xyz
-    record: re-discord
+    record: "{{ server_hostname }}"
     type: A
     value: "{{ re_droplet.data.droplet.id }}" 
     account_email: "{{ CLOUDFLARE_EMAIL}}"
