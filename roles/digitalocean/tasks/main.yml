@@ -32,4 +32,14 @@
     resource_id: "{{ re_droplet.data.droplet.id }}" 
     state: present 
 
+- name: Create DNS A record to point to the box
+  cloudflare_dns:
+    zone: buttes.xyz
+    record: re-discord
+    type: A
+    value: "{{ re_droplet.data.droplet.id }}" 
+    account_email: "{{ CLOUDFLARE_EMAIL}}"
+    account_api_token: "{{ CLOUDFLARE_API_TOKEN }}"
+    state: present
+  register: record
 
