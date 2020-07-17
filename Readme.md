@@ -16,6 +16,17 @@ Before you begin, you will need the following:
 - A [Digital Ocean](https://www.digitalocean.com) Account.
 - A linux box with [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html) installed ([WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) also works if you are running Windows 10)
 
-...Put more instructions here...
+Then to fire everything up,,,
 
-and finally run `ansible-playbook main.yml` to set it all up
+1. Create `vars/secrets.yml` with the following contents
+```yml
+DO_API_TOKEN: << Your Digital Ocean API Token >>
+CLOUDFLARE_EMAIL: << Your cloudflare email address >>
+CLOUDFLARE_API_TOKEN: << Your Cloudflare API Token >>
+```
+2. Enter values into `vars/values.yml`
+3. Run `ansible-playbook provision-server.yml` to provision a Digital Ocean droplet with associated DNS records
+4. Run `ansible-playbook deploy-stack.yml` to deploy the listed stack to the newly provisioned droplet
+
+
+Enjoy your newly provisioned server, bot and monitoring stack.
