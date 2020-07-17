@@ -1,9 +1,10 @@
 # Real Engineering Discord Projects Infrastructure
-This repo contains the ansible playbooks to spin up the infrastructure hosting the Real Engineering Discord server community projects. At present this means it will do the following:
+This repo contains the ansible playbooks to spin up the infrastructure hosting the Real Engineering Discord server community projects. At present this means it will do the following (WIP - Green ticks currently implemented):
 
-- Add CatButtes's SSH key to [Digital Ocean](https://www.digitalocean.com)
-- Spin up a 1GB Digital Ocean VPS instance
-- Install [docker](https://www.docker.com/)
+- Add CatButtes's SSH key to [Digital Ocean](https://www.digitalocean.com) ✅
+- Spin up a 1GB Digital Ocean VPS instance ✅
+- Create a DNS entry for the new droplet ✅
+- Install [docker](https://www.docker.com/) ✅
 - Install [prometheus](https://www.prometheus.io/)
 - Install [grafana](https://grafana.com/)
 - Install [Traefik](https://containo.us/traefik/)
