@@ -1,0 +1,2 @@
+server_hostname: "re-discord-server"
+server_tags: ["re-discord", "docker"]
