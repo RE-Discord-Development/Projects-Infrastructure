@@ -1,2 +1,14 @@
-ssh_public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6/kE22FMkGXOFQu5MY6IpTfDiL55o7RBTkBObprPXpXI5vepHugqFPExv0x/jU+NEITB4lD7/GF5eobjPcv0jeZZgPsgWLln3QqRaFmLc8p3kQGgh5GTEEsmH+exuSDYZtOi1fJBtYRQ9roTfF/AunwR9O4HaCuwO4DwSnenXQl2lbhl7O7wp/RU+aCDOo9aT86mHci8/UmNe2AGxEIVC38VpfhhaxNtQ2cgBpvtWDyNUbVQDVw+Az8T7UTqMRQVKOjwL9ppilh24gkeT/L+7SSemhC0ZEOpa4HI6MTto8mL0/Cm6TPgO6F2aUl0jTdpZJG+F/qWLvC8cuhnPSl8/ catbuttes@outlook.com"
-ssh_key_fingerprint: "00:4f:c2:c8:ac:93:89:2c:63:31:17:53:6c:d7:0c:de"
+data_persistance_location: "/etc/docker/containers/data"
+url_base_path: "https://re.buttes.xyz"
+host_base_path: "re.buttes.xyz"
+force_container_recreate: no
+
+grafana_version: "7.1.1"
+grafana_renderer_version: "2.0.0"
+prometheus_version: "v2.19.3"
+cadvisor_version: "v0.36.0"
+prometheus_blackbox_version: "v0.17.0"
+traefik_version: "v2.3"
+communitybot_version: "latest"
+
+# acme_ca_server: "https://acme-v02.api.letsencrypt.org/directory"

@@ -1,0 +1,55 @@
+---
+- name: Ensure the monitoring network exists
+  docker_network:
+    name: monitoring
+    state: present
+
+- name: Ensure config persistance location
+  file:
+    name: "{{ data_persistance_location }}/prometheus/config"
+    state: directory
+    mode: "u=rwx,g=rwx,o=rwx"
+
+- name: Ensure data persistance location
+  file:
+    name: "{{ data_persistance_location }}/prometheus/data"
+    state: directory
+    mode: "u=rwx,g=rwx,o=rwx"
+
+- name: Deploy prometheus.yml
+  template:
+      dest: "{{ data_persistance_location }}/prometheus/config/prometheus.yml" # required. Location to render the template to on the remote machine.
+      src: prometheus.yml.j2 # required. Path of a Jinja2 formatted template on the Ansible controller. This can be a relative or absolute path.
+
+- name: Start a cAdvisor container
+  docker_container:
+    name: prometheus-cadvisor
+    image: "gcr.io/google-containers/cadvisor:{{cadvisor_version}}"
+    restart_policy: always
+    privileged: yes
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    networks:
+      - name: monitoring
+    purge_networks: yes
+    recreate: yes
+    state: started
+
+- name: Start a prometheus container
+  docker_container:
+    name: prometheus
+    image: "prom/prometheus:{{prometheus_version}}"
+    restart_policy: always
+    command: "--config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/var/lib/prometheus/"
+    volumes:
+      - "{{ data_persistance_location }}/prometheus/config:/etc/prometheus"
+      - "{{ data_persistance_location }}/prometheus/data:/var/lib/prometheus"
+    networks:
+      - name: monitoring
+    purge_networks: yes
+    recreate: yes
+    state: started
+        

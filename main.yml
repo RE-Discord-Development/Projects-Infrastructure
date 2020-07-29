@@ -1,0 +1,23 @@
+- name: Deploy the application stack to a server
+  hosts: docker
+
+  vars:
+    - ansible_user: root
+    - ansible_python_interpreter: "/usr/bin/python3"
+
+  vars_files:
+   - "vars/values.yml"
+   - "vars/secrets.yml"
+
+  roles:
+    - docker
+    - traefik
+    - grafana
+    - prometheus
+    - prometheus-blackbox
+  
+  # environment:
+  #   - SCW_API_KEY: "{{SCW_API_KEY}}"
+
+  
+

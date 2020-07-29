@@ -1,0 +1,6 @@
+plugin: scaleway
+region:
+  - par1
+tags:
+  - real-engineering
+  - docker

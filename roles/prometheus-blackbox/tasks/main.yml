@@ -1,0 +1,30 @@
+---
+- name: Ensure the monitoring network exists
+  docker_network:
+    name: monitoring
+    state: present
+
+- name: Ensure config persistance location
+  file:
+    name: "{{ data_persistance_location }}/prometheus-blackbox/config"
+    state: directory
+    mode: "u=rwx,g=rwx,o=rwx"
+
+- name: Deploy blackbox.yml
+  template:
+      dest: "{{ data_persistance_location }}/prometheus-blackbox/config/blackbox.yml" 
+      src: blackbox.yml.j2 
+
+- name: Start a prometheus blackbox expoerter container
+  docker_container:
+    name: prometheus-blackbox
+    image: "prom/blackbox-exporter:{{prometheus_blackbox_version}}"
+    restart_policy: always
+    command: "--config.file=/etc/prometheus/blackbox.yml"
+    volumes:
+      - "{{ data_persistance_location }}/prometheus-blackbox/config:/etc/prometheus"
+    networks:
+      - name: monitoring
+    purge_networks: yes
+    recreate: yes
+    state: started

@@ -5,6 +5,28 @@
     update_cache: yes 
     force_apt_get: yes
 
+- name: Add contrib non-free repos
+  apt_repository:
+    repo: deb http://deb.debian.org/debian buster main contrib non-free
+    state: present
+
+- name: Add updates contrib non-free repos
+  apt_repository:
+    repo: deb http://deb.debian.org/debian-security/ buster/updates main contrib non-free
+    state: present
+
+- name: Add buster-updates contrib non-free repos
+  apt_repository:
+    repo: deb http://deb.debian.org/debian buster-updates main contrib non-free
+    state: present
+
+- name: Do system update
+  apt:
+    upgrade: full
+    update_cache: yes
+    autoclean: yes
+    autoremove: yes
+
 - name: Install required system packages
   apt: 
     name: "{{ item }}" 
@@ -14,19 +36,20 @@
 
 - name: Add Docker GPG apt Key
   apt_key:
-    url: https://download.docker.com/linux/ubuntu/gpg
+    url: https://download.docker.com/linux/debian/gpg
     state: present
 
 - name: Add Docker Repository
   apt_repository:
-    repo: deb https://download.docker.com/linux/ubuntu bionic stable
+    repo: deb https://download.docker.com/linux/debian buster stable
     state: present
 
 - name: Update apt and install docker-ce
   apt: 
     update_cache: yes 
-    name: docker-ce 
+    name: "{{item}}" 
     state: latest
+  loop: ['containerd.io', 'docker-ce']
 
 - name: Install Docker Module for Python
   pip:
