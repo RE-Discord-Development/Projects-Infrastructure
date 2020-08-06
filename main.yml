@@ -15,6 +15,7 @@
     - grafana
     - prometheus
     - prometheus-blackbox
+    - communitybot
   
   # environment:
   #   - SCW_API_KEY: "{{SCW_API_KEY}}"

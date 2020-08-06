@@ -17,52 +17,8 @@ scrape_configs:
   - job_name: 'grafana-renderer'
     static_configs:
       - targets: ['grafana-renderer:8081']
-  - job_name: 'blackbox'
-    metrics_path: /probe
-    params:
-      module: ['http_prometheus']
+  - job_name: 'communitybot'
     static_configs:
-      - targets:
-        - https://www.essex.ac.uk
-        - https://moodle.essex.ac.uk
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: prometheus-blackbox:9115 
-  - job_name: 'feds-check'
-    metrics_path: /probe
-    params:
-      module: ['http_essex_feds_prober']
-    static_configs:
-      - targets:
-        - https://feds.essex.ac.uk/adfs/ls/?wa=wsignin1.0&wtrealm=urn:federation:MicrosoftOnline
-        - https://email.essex.ac.uk
-        - https://faser.essex.ac.uk
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: prometheus-blackbox:9115
-  - job_name: 'feds-dns-check'
-    metrics_path: /probe
-    params:
-      module: ['dns_essex_feds_prober']
-    static_configs:
-      - targets:
-        - dns0.essex.ac.uk
-        - dns1.essex.ac.uk
-        - dns2.essex.ac.uk
-        - dns3.essex.ac.uk
-    relabel_configs:
-      - source_labels: [__address__]
-        target_label: __param_target
-      - source_labels: [__param_target]
-        target_label: instance
-      - target_label: __address__
-        replacement: prometheus-blackbox:9115
+      - targets: ['communitybot:9000']
+
 
