@@ -3,7 +3,7 @@ url_base_path: "https://re.buttes.xyz"
 host_base_path: "re.buttes.xyz"
 force_container_recreate: no
 
-grafana_version: "7.1.1"
+grafana_version: "7.1.2"
 grafana_renderer_version: "2.0.0"
 prometheus_version: "v2.19.3"
 cadvisor_version: "v0.36.0"
