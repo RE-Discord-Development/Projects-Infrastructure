@@ -1,0 +1,22 @@
+- name: Ensure data persistance location
+  file:
+    name: "{{ data_persistance_location }}/communitybot"
+    state: directory
+    mode: "u=rwx,g=rwx,o=rwx"
+
+- name: Start a communitybot container
+  docker_container:
+    name: communitybot
+    image: "catbuttes/communitybot:{{communitybot_version}}"
+    restart_policy: always
+    env:
+      BOT_STORAGE: "/var/lib/communitybot"
+      BOT_TOKEN: "{{ COMMUNITYBOT_DISCORD_TOKEN }}"
+    volumes:
+      - "{{ data_persistance_location }}/communitybot:/var/lib/communitybot"
+    networks:
+      - name: monitoring
+    purge_networks: yes
+    recreate: yes
+    state: started
+        
